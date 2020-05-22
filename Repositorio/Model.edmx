@@ -1,0 +1,1221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LivFlowModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Anuncio">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="int" Nullable="false" />
+          <Property Name="livro" Type="int" Nullable="false" />
+          <Property Name="imagem" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="10" />
+          <Property Name="descricao" Type="text" />
+          <Property Name="precoUnitario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="criado_em" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AutorLivro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="autor" Type="int" Nullable="false" />
+          <Property Name="livro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Avaliacao">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="int" Nullable="false" />
+          <Property Name="livro" Type="int" />
+          <Property Name="nota" Type="int" Nullable="false" />
+          <Property Name="conteudo" Type="text" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="int" Nullable="false" />
+          <Property Name="anuncio" Type="int" />
+          <Property Name="conteudo" Type="text" />
+          <Property Name="criado_em" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Editora">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneroLivro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="livro" Type="int" Nullable="false" />
+          <Property Name="genero" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Imagem">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anuncio" Type="int" />
+          <Property Name="origem" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImagemCapa">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="livro" Type="int" Nullable="false" />
+          <Property Name="origem" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Livro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ano" Type="int" />
+          <Property Name="editora" Type="int" />
+          <Property Name="edicao" Type="int" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="remetente" Type="int" Nullable="false" />
+          <Property Name="destinatario" Type="int" Nullable="false" />
+          <Property Name="anuncio" Type="int" />
+          <Property Name="conteudo" Type="text" />
+          <Property Name="anexo" Type="varchar" MaxLength="255" />
+          <Property Name="criado_em" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoUsuario" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="sobrenome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="resumo" Type="text" />
+          <Property Name="senha" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="criado_em" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LivFlow.dbo.vw_Anuncio' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Anuncio">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="usuaio" />
+            <PropertyRef Name="livro" />
+            <PropertyRef Name="imagem" />
+            <PropertyRef Name="precoUnitario" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="usuaio" Type="varchar" MaxLength="356" Nullable="false" />
+          <Property Name="livro" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="imagem" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="10" />
+          <Property Name="descricao" Type="text" />
+          <Property Name="precoUnitario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="criado_em" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LivFlow.dbo.vw_Livro' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Livro">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="titulo" />
+            <PropertyRef Name="editora" />
+            <PropertyRef Name="imagem" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ano" Type="int" />
+          <Property Name="edicao" Type="int" />
+          <Property Name="editora" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="imagem" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="nota" Type="int" />
+        </EntityType>
+        <Association Name="FK_Anuncio_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Anuncio">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anuncio_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Anuncio">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutorLivro_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="AutorLivro" Type="Self.AutorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="AutorLivro">
+              <PropertyRef Name="autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutorLivro_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="AutorLivro" Type="Self.AutorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="AutorLivro">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avaliacao_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="0..1" />
+          <End Role="Avaliacao" Type="Self.Avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Avaliacao">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avaliacao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Avaliacao" Type="Self.Avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Avaliacao">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comentario_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comentario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneroLivro_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="GeneroLivro" Type="Self.GeneroLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="GeneroLivro">
+              <PropertyRef Name="genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneroLivro_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="GeneroLivro" Type="Self.GeneroLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="GeneroLivro">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagem_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Imagem" Type="Self.Imagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Imagem">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagemCapa_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="ImagemCapa" Type="Self.ImagemCapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="ImagemCapa">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Livro_Editora">
+          <End Role="Editora" Type="Self.Editora" Multiplicity="0..1" />
+          <End Role="Livro" Type="Self.Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editora">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Livro">
+              <PropertyRef Name="editora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario_Destinatario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="destinatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario_Remetente">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="remetente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LivFlowModelStoreContainer">
+          <EntitySet Name="Anuncio" EntityType="Self.Anuncio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AutorLivro" EntityType="Self.AutorLivro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Avaliacao" EntityType="Self.Avaliacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editora" EntityType="Self.Editora" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneroLivro" EntityType="Self.GeneroLivro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Imagem" EntityType="Self.Imagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagemCapa" EntityType="Self.ImagemCapa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Livro" EntityType="Self.Livro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensagem" EntityType="Self.Mensagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Anuncio" EntityType="Self.vw_Anuncio" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Anuncio].[codigo] AS [codigo], 
+    [vw_Anuncio].[usuaio] AS [usuaio], 
+    [vw_Anuncio].[livro] AS [livro], 
+    [vw_Anuncio].[imagem] AS [imagem], 
+    [vw_Anuncio].[titulo] AS [titulo], 
+    [vw_Anuncio].[descricao] AS [descricao], 
+    [vw_Anuncio].[precoUnitario] AS [precoUnitario], 
+    [vw_Anuncio].[quantidade] AS [quantidade], 
+    [vw_Anuncio].[status] AS [status], 
+    [vw_Anuncio].[criado_em] AS [criado_em]
+    FROM [dbo].[vw_Anuncio] AS [vw_Anuncio]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Livro" EntityType="Self.vw_Livro" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Livro].[codigo] AS [codigo], 
+    [vw_Livro].[titulo] AS [titulo], 
+    [vw_Livro].[ano] AS [ano], 
+    [vw_Livro].[edicao] AS [edicao], 
+    [vw_Livro].[editora] AS [editora], 
+    [vw_Livro].[imagem] AS [imagem], 
+    [vw_Livro].[nota] AS [nota]
+    FROM [dbo].[vw_Livro] AS [vw_Livro]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Anuncio_Livro" Association="Self.FK_Anuncio_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="Anuncio" EntitySet="Anuncio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anuncio_Usuario" Association="Self.FK_Anuncio_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Anuncio" EntitySet="Anuncio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutorLivro_Autor" Association="Self.FK_AutorLivro_Autor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutorLivro" EntitySet="AutorLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutorLivro_Livro" Association="Self.FK_AutorLivro_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="AutorLivro" EntitySet="AutorLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avaliacao_Livro" Association="Self.FK_Avaliacao_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="Avaliacao" EntitySet="Avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avaliacao_Usuario" Association="Self.FK_Avaliacao_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Avaliacao" EntitySet="Avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comentario_Anuncio" Association="Self.FK_Comentario_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comentario_Usuario" Association="Self.FK_Comentario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneroLivro_Genero" Association="Self.FK_GeneroLivro_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="GeneroLivro" EntitySet="GeneroLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneroLivro_Livro" Association="Self.FK_GeneroLivro_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="GeneroLivro" EntitySet="GeneroLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagem_Anuncio" Association="Self.FK_Imagem_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Imagem" EntitySet="Imagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagemCapa_Livro" Association="Self.FK_ImagemCapa_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="ImagemCapa" EntitySet="ImagemCapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Livro_Editora" Association="Self.FK_Livro_Editora">
+            <End Role="Editora" EntitySet="Editora" />
+            <End Role="Livro" EntitySet="Livro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Anuncio" Association="Self.FK_Mensagem_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario_Destinatario" Association="Self.FK_Mensagem_Usuario_Destinatario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario_Remetente" Association="Self.FK_Mensagem_Usuario_Remetente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LivFlowModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anuncio">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="Int32" Nullable="false" />
+          <Property Name="livro" Type="Int32" Nullable="false" />
+          <Property Name="imagem" Type="Int32" />
+          <Property Name="titulo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="precoUnitario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="criado_em" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Livro1" Relationship="Self.FK_Anuncio_Livro" FromRole="Anuncio" ToRole="Livro" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Anuncio_Usuario" FromRole="Anuncio" ToRole="Usuario" />
+          <NavigationProperty Name="Comentario" Relationship="Self.FK_Comentario_Anuncio" FromRole="Anuncio" ToRole="Comentario" />
+          <NavigationProperty Name="Imagem1" Relationship="Self.FK_Imagem_Anuncio" FromRole="Anuncio" ToRole="Imagem" />
+          <NavigationProperty Name="Mensagem" Relationship="Self.FK_Mensagem_Anuncio" FromRole="Anuncio" ToRole="Mensagem" />
+        </EntityType>
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AutorLivro" Relationship="Self.FK_AutorLivro_Autor" FromRole="Autor" ToRole="AutorLivro" />
+        </EntityType>
+        <EntityType Name="AutorLivro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="autor" Type="Int32" Nullable="false" />
+          <Property Name="livro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Autor1" Relationship="Self.FK_AutorLivro_Autor" FromRole="AutorLivro" ToRole="Autor" />
+          <NavigationProperty Name="Livro1" Relationship="Self.FK_AutorLivro_Livro" FromRole="AutorLivro" ToRole="Livro" />
+        </EntityType>
+        <EntityType Name="Avaliacao">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="Int32" Nullable="false" />
+          <Property Name="livro" Type="Int32" />
+          <Property Name="nota" Type="Int32" Nullable="false" />
+          <Property Name="conteudo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Livro1" Relationship="Self.FK_Avaliacao_Livro" FromRole="Avaliacao" ToRole="Livro" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Avaliacao_Usuario" FromRole="Avaliacao" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Comentario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="Int32" Nullable="false" />
+          <Property Name="anuncio" Type="Int32" />
+          <Property Name="conteudo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="criado_em" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Anuncio1" Relationship="Self.FK_Comentario_Anuncio" FromRole="Comentario" ToRole="Anuncio" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Comentario_Usuario" FromRole="Comentario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Editora">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Livro" Relationship="Self.FK_Livro_Editora" FromRole="Editora" ToRole="Livro" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GeneroLivro" Relationship="Self.FK_GeneroLivro_Genero" FromRole="Genero" ToRole="GeneroLivro" />
+        </EntityType>
+        <EntityType Name="GeneroLivro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="livro" Type="Int32" Nullable="false" />
+          <Property Name="genero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genero1" Relationship="Self.FK_GeneroLivro_Genero" FromRole="GeneroLivro" ToRole="Genero" />
+          <NavigationProperty Name="Livro1" Relationship="Self.FK_GeneroLivro_Livro" FromRole="GeneroLivro" ToRole="Livro" />
+        </EntityType>
+        <EntityType Name="Imagem">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anuncio" Type="Int32" />
+          <Property Name="origem" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Anuncio1" Relationship="Self.FK_Imagem_Anuncio" FromRole="Imagem" ToRole="Anuncio" />
+        </EntityType>
+        <EntityType Name="ImagemCapa">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="livro" Type="Int32" Nullable="false" />
+          <Property Name="origem" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Livro1" Relationship="Self.FK_ImagemCapa_Livro" FromRole="ImagemCapa" ToRole="Livro" />
+        </EntityType>
+        <EntityType Name="Livro">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ano" Type="Int32" />
+          <Property Name="editora" Type="Int32" />
+          <Property Name="edicao" Type="Int32" />
+          <NavigationProperty Name="Anuncio" Relationship="Self.FK_Anuncio_Livro" FromRole="Livro" ToRole="Anuncio" />
+          <NavigationProperty Name="AutorLivro" Relationship="Self.FK_AutorLivro_Livro" FromRole="Livro" ToRole="AutorLivro" />
+          <NavigationProperty Name="Avaliacao" Relationship="Self.FK_Avaliacao_Livro" FromRole="Livro" ToRole="Avaliacao" />
+          <NavigationProperty Name="Editora1" Relationship="Self.FK_Livro_Editora" FromRole="Livro" ToRole="Editora" />
+          <NavigationProperty Name="GeneroLivro" Relationship="Self.FK_GeneroLivro_Livro" FromRole="Livro" ToRole="GeneroLivro" />
+          <NavigationProperty Name="ImagemCapa" Relationship="Self.FK_ImagemCapa_Livro" FromRole="Livro" ToRole="ImagemCapa" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="remetente" Type="Int32" Nullable="false" />
+          <Property Name="destinatario" Type="Int32" Nullable="false" />
+          <Property Name="anuncio" Type="Int32" />
+          <Property Name="conteudo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="anexo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="criado_em" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Anuncio1" Relationship="Self.FK_Mensagem_Anuncio" FromRole="Mensagem" ToRole="Anuncio" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Mensagem_Usuario_Destinatario" FromRole="Mensagem" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Mensagem_Usuario_Remetente" FromRole="Mensagem" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sobrenome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="resumo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="criado_em" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Anuncio" Relationship="Self.FK_Anuncio_Usuario" FromRole="Usuario" ToRole="Anuncio" />
+          <NavigationProperty Name="Avaliacao" Relationship="Self.FK_Avaliacao_Usuario" FromRole="Usuario" ToRole="Avaliacao" />
+          <NavigationProperty Name="Comentario" Relationship="Self.FK_Comentario_Usuario" FromRole="Usuario" ToRole="Comentario" />
+          <NavigationProperty Name="Mensagem" Relationship="Self.FK_Mensagem_Usuario_Destinatario" FromRole="Usuario" ToRole="Mensagem" />
+          <NavigationProperty Name="Mensagem1" Relationship="Self.FK_Mensagem_Usuario_Remetente" FromRole="Usuario" ToRole="Mensagem" />
+          <NavigationProperty Name="TipoUsuario1" Relationship="Self.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+        </EntityType>
+        <Association Name="FK_Anuncio_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Anuncio">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anuncio_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Anuncio">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comentario_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Imagem_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Imagem" Type="Self.Imagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Imagem">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Anuncio">
+          <End Role="Anuncio" Type="Self.Anuncio" Multiplicity="0..1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anuncio">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="anuncio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutorLivro_Autor">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="1" />
+          <End Role="AutorLivro" Type="Self.AutorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="AutorLivro">
+              <PropertyRef Name="autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AutorLivro_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="AutorLivro" Type="Self.AutorLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="AutorLivro">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avaliacao_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="0..1" />
+          <End Role="Avaliacao" Type="Self.Avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Avaliacao">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avaliacao_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Avaliacao" Type="Self.Avaliacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Avaliacao">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comentario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Comentario">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Livro_Editora">
+          <End Role="Editora" Type="Self.Editora" Multiplicity="0..1" />
+          <End Role="Livro" Type="Self.Livro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editora">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Livro">
+              <PropertyRef Name="editora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneroLivro_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="GeneroLivro" Type="Self.GeneroLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="GeneroLivro">
+              <PropertyRef Name="genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneroLivro_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="GeneroLivro" Type="Self.GeneroLivro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="GeneroLivro">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagemCapa_Livro">
+          <End Role="Livro" Type="Self.Livro" Multiplicity="1" />
+          <End Role="ImagemCapa" Type="Self.ImagemCapa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Livro">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="ImagemCapa">
+              <PropertyRef Name="livro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario_Destinatario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="destinatario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario_Remetente">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="remetente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LivFlowEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anuncio" EntityType="Self.Anuncio" />
+          <EntitySet Name="Autor" EntityType="Self.Autor" />
+          <EntitySet Name="AutorLivro" EntityType="Self.AutorLivro" />
+          <EntitySet Name="Avaliacao" EntityType="Self.Avaliacao" />
+          <EntitySet Name="Comentario" EntityType="Self.Comentario" />
+          <EntitySet Name="Editora" EntityType="Self.Editora" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
+          <EntitySet Name="GeneroLivro" EntityType="Self.GeneroLivro" />
+          <EntitySet Name="Imagem" EntityType="Self.Imagem" />
+          <EntitySet Name="ImagemCapa" EntityType="Self.ImagemCapa" />
+          <EntitySet Name="Livro" EntityType="Self.Livro" />
+          <EntitySet Name="Mensagem" EntityType="Self.Mensagem" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Anuncio_Livro" Association="Self.FK_Anuncio_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="Anuncio" EntitySet="Anuncio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anuncio_Usuario" Association="Self.FK_Anuncio_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Anuncio" EntitySet="Anuncio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comentario_Anuncio" Association="Self.FK_Comentario_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Imagem_Anuncio" Association="Self.FK_Imagem_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Imagem" EntitySet="Imagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Anuncio" Association="Self.FK_Mensagem_Anuncio">
+            <End Role="Anuncio" EntitySet="Anuncio" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutorLivro_Autor" Association="Self.FK_AutorLivro_Autor">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="AutorLivro" EntitySet="AutorLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AutorLivro_Livro" Association="Self.FK_AutorLivro_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="AutorLivro" EntitySet="AutorLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avaliacao_Livro" Association="Self.FK_Avaliacao_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="Avaliacao" EntitySet="Avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avaliacao_Usuario" Association="Self.FK_Avaliacao_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Avaliacao" EntitySet="Avaliacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comentario_Usuario" Association="Self.FK_Comentario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Comentario" EntitySet="Comentario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Livro_Editora" Association="Self.FK_Livro_Editora">
+            <End Role="Editora" EntitySet="Editora" />
+            <End Role="Livro" EntitySet="Livro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneroLivro_Genero" Association="Self.FK_GeneroLivro_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="GeneroLivro" EntitySet="GeneroLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneroLivro_Livro" Association="Self.FK_GeneroLivro_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="GeneroLivro" EntitySet="GeneroLivro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagemCapa_Livro" Association="Self.FK_ImagemCapa_Livro">
+            <End Role="Livro" EntitySet="Livro" />
+            <End Role="ImagemCapa" EntitySet="ImagemCapa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario_Destinatario" Association="Self.FK_Mensagem_Usuario_Destinatario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario_Remetente" Association="Self.FK_Mensagem_Usuario_Remetente">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="vw_Anuncio" EntityType="LivFlowModel.vw_Anuncio" />
+          <EntitySet Name="vw_Livro" EntityType="LivFlowModel.vw_Livro" />
+        </EntityContainer>
+        <EntityType Name="vw_Anuncio">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="usuaio" />
+            <PropertyRef Name="livro" />
+            <PropertyRef Name="imagem" />
+            <PropertyRef Name="precoUnitario" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="usuaio" Type="String" Nullable="false" MaxLength="356" FixedLength="false" Unicode="false" />
+          <Property Name="livro" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="imagem" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="titulo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="precoUnitario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="criado_em" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_Livro">
+          <Key>
+            <PropertyRef Name="codigo" />
+            <PropertyRef Name="titulo" />
+            <PropertyRef Name="editora" />
+            <PropertyRef Name="imagem" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ano" Type="Int32" />
+          <Property Name="edicao" Type="Int32" />
+          <Property Name="editora" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="imagem" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nota" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LivFlowModelStoreContainer" CdmEntityContainer="LivFlowEntities">
+          <EntitySetMapping Name="Anuncio">
+            <EntityTypeMapping TypeName="LivFlowModel.Anuncio">
+              <MappingFragment StoreEntitySet="Anuncio">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="criado_em" ColumnName="criado_em" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Autor">
+            <EntityTypeMapping TypeName="LivFlowModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutorLivro">
+            <EntityTypeMapping TypeName="LivFlowModel.AutorLivro">
+              <MappingFragment StoreEntitySet="AutorLivro">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Avaliacao">
+            <EntityTypeMapping TypeName="LivFlowModel.Avaliacao">
+              <MappingFragment StoreEntitySet="Avaliacao">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comentario">
+            <EntityTypeMapping TypeName="LivFlowModel.Comentario">
+              <MappingFragment StoreEntitySet="Comentario">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="anuncio" ColumnName="anuncio" />
+                <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+                <ScalarProperty Name="criado_em" ColumnName="criado_em" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editora">
+            <EntityTypeMapping TypeName="LivFlowModel.Editora">
+              <MappingFragment StoreEntitySet="Editora">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="LivFlowModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneroLivro">
+            <EntityTypeMapping TypeName="LivFlowModel.GeneroLivro">
+              <MappingFragment StoreEntitySet="GeneroLivro">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Imagem">
+            <EntityTypeMapping TypeName="LivFlowModel.Imagem">
+              <MappingFragment StoreEntitySet="Imagem">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="anuncio" ColumnName="anuncio" />
+                <ScalarProperty Name="origem" ColumnName="origem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagemCapa">
+            <EntityTypeMapping TypeName="LivFlowModel.ImagemCapa">
+              <MappingFragment StoreEntitySet="ImagemCapa">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+                <ScalarProperty Name="origem" ColumnName="origem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Livro">
+            <EntityTypeMapping TypeName="LivFlowModel.Livro">
+              <MappingFragment StoreEntitySet="Livro">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="editora" ColumnName="editora" />
+                <ScalarProperty Name="edicao" ColumnName="edicao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensagem">
+            <EntityTypeMapping TypeName="LivFlowModel.Mensagem">
+              <MappingFragment StoreEntitySet="Mensagem">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="remetente" ColumnName="remetente" />
+                <ScalarProperty Name="destinatario" ColumnName="destinatario" />
+                <ScalarProperty Name="anuncio" ColumnName="anuncio" />
+                <ScalarProperty Name="conteudo" ColumnName="conteudo" />
+                <ScalarProperty Name="anexo" ColumnName="anexo" />
+                <ScalarProperty Name="criado_em" ColumnName="criado_em" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="LivFlowModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="LivFlowModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="LivFlowModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="tipoUsuario" ColumnName="tipoUsuario" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="sobrenome" ColumnName="sobrenome" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="resumo" ColumnName="resumo" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="criado_em" ColumnName="criado_em" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Anuncio">
+            <EntityTypeMapping TypeName="LivFlowModel.vw_Anuncio">
+              <MappingFragment StoreEntitySet="vw_Anuncio">
+                <ScalarProperty Name="criado_em" ColumnName="criado_em" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
+                <ScalarProperty Name="livro" ColumnName="livro" />
+                <ScalarProperty Name="usuaio" ColumnName="usuaio" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Livro">
+            <EntityTypeMapping TypeName="LivFlowModel.vw_Livro">
+              <MappingFragment StoreEntitySet="vw_Livro">
+                <ScalarProperty Name="nota" ColumnName="nota" />
+                <ScalarProperty Name="imagem" ColumnName="imagem" />
+                <ScalarProperty Name="editora" ColumnName="editora" />
+                <ScalarProperty Name="edicao" ColumnName="edicao" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

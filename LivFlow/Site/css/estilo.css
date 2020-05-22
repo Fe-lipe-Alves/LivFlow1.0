@@ -1,0 +1,50 @@
+﻿@charset "UTF-8";
+
+
+#feedback {
+    background-color: #FC8370;
+    color: #FFFFFF;
+    z-index: 3000;
+}
+
+#feedback .row:hover {
+    background-color: #FF8B79;
+    cursor: pointer;
+}
+
+#feedback .errorHeaderSimple{
+    cursor: default;
+}
+
+#feedback .errorHeader span {
+    font-weight: bold;
+}
+
+#feedback .errorHeader .exibirDetalhes{
+    margin: 0px 10px;
+}
+
+#feedback .errorContent {
+    padding: 20px 10%;
+}
+
+#feedback .errorContent p{
+    line-height: 20px;
+    font-size: 13px;
+}
+
+input[type=checkbox]{
+    margin: auto 10px;
+}
+
+.itemListaLivro {
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+.itemListaLivro:hover {
+    border-color: #5a50e5;
+}
+.itemListaLivroAtivo {
+    border-color: #7971ea;
+}

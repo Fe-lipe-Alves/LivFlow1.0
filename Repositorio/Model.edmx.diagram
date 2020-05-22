@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="22a61e136a9d4607b65b3ab193a8425b" Name="Diagram1">
+        <EntityTypeShape EntityType="LivFlowModel.Anuncio" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Autor" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.AutorLivro" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Avaliacao" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Comentario" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Editora" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Genero" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.GeneroLivro" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Imagem" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.ImagemCapa" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Livro" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Mensagem" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="LivFlowModel.Usuario" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="LivFlowModel.FK_Anuncio_Livro" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Anuncio_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Comentario_Anuncio" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Imagem_Anuncio" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Mensagem_Anuncio" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_AutorLivro_Autor" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_AutorLivro_Livro" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Avaliacao_Livro" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Avaliacao_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Comentario_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Livro_Editora" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_GeneroLivro_Genero" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_GeneroLivro_Livro" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_ImagemCapa_Livro" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Mensagem_Usuario_Destinatario" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Mensagem_Usuario_Remetente" ManuallyRouted="false" />
+        <AssociationConnector Association="LivFlowModel.FK_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LivFlowModel.vw_Anuncio" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="LivFlowModel.vw_Livro" Width="1.5" PointX="12.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
